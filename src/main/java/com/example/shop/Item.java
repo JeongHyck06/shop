@@ -1,13 +1,18 @@
 package com.example.shop;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 @Entity
-public class Item  {
+@ToString
+public class Item {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    public Integer id;
 
-    @Column(columnDefinition = "TEXT")
     public String title;
     public Integer price;
+
+//    public String toString() {
+//    return this.title + this.price;
+//    }
 }

@@ -14,7 +14,9 @@ public class ItemController {
     String list(Model model) {
         var result = itemRepository.findAll();
         System.out.println(result);
-        model.addAttribute("name", "홍길동");
+        model.addAttribute("items", result);
+        var a = new Item();
+        System.out.println(a);
         return "list";
     }
 }
