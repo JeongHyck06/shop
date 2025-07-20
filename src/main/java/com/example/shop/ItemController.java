@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -21,6 +23,15 @@ public class ItemController {
         var a = new Item();
         System.out.println(a);
         return "list";
+    }
+
+    @PostMapping("/add")
+    String addPost(@RequestParam String title, Integer price){
+        Item item = new Item();
+        item.setTitle(title);
+        item.setPrice(price);
+        itemRepository.save(item);
+        return "redirect:/list";
     }
 
     @GetMapping("/detail/{id}")

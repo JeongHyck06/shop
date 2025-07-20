@@ -37,13 +37,5 @@ public class BasicController {
     String write(){
         return "write";
     }
-    @PostMapping("/add")
-    String addPost(@RequestParam String title, Integer price){
-        Item item = new Item();
-        item.setTitle(title);
-        item.setPrice(price);
-        itemRepository.save(item);
-        return "redirect:/list";
-    }
 
 }
