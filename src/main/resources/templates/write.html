@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="main.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
 </head>
 <body>
     <div th:replace="~{nav.html :: navbar}"></div>
-<form action="/add" method="POST">
+    <form action="/add" method="POST">
         <input name="title">
         <input name="price">
         <button type="submit">버튼</button>
