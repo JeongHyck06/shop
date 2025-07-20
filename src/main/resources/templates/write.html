@@ -6,7 +6,8 @@
     <link href="main.css" rel="stylesheet">
 </head>
 <body>
-    <form action="/add" method="POST">
+    <div th:replace="~{nav.html :: navbar}"></div>
+<form action="/add" method="POST">
         <input name="title">
         <input name="price">
         <button type="submit">버튼</button>
