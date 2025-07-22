@@ -1,12 +1,12 @@
 package com.example.shop;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String addPost(@RequestParam String title, Integer price){
+    String addPost(@RequestParam String title, Integer price) {
         Item item = new Item();
         item.setTitle(title);
         item.setPrice(price);
@@ -35,16 +35,18 @@ public class ItemController {
     }
 
     @GetMapping("/detail/{id}")
-    String detail(@PathVariable Long id, Model model) {
-        Optional<Item> result = itemRepository.findById(Long.valueOf(id));
-        if(result.isPresent()) {
-            System.out.println(result.get());
-            model.addAttribute("data",result.get());
-        }
-        else {
+    String detail(@PathVariable Long id, Model model) throws Exception {
+        Optional<Item> result = itemRepository.findById(id);
+        if (result.isPresent()) {
+            model.addAttribute("data", result.get());
+            return "detail";
+        } else {
             return "redirect:/list";
         }
-//        System.out.println(result.get());
-        return "detail.html";
     }
+//    @ExceptionHandler(Exception.class)
+//    public void handler(){
+//        return ResponseEntity.status().body();
+//    }
+
 }
